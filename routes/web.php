@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('resume');
+    $desc= \App\Descripcion::all();
+    $secciones= \App\Seccion::all();
+    return view('resume', compact('desc', 'secciones'));
 });
+
+//Auth::routes();
