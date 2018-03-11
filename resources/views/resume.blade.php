@@ -11,14 +11,14 @@
     <title>Julio Sarmiento Sabogal</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="devicons/css/devicons.min.css" rel="stylesheet">
-    <link href="simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="{{ URL::asset('https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900') }}" rel="stylesheet">
+    <link href="{{ URL::asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i') }}" rel="stylesheet">
+    <link href="{{ URL::asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('devicons/css/devicons.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/resume.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href="#about">Acerca de</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
@@ -65,11 +65,14 @@
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto">
-          <h1 class="mb-0">Clarence
-            <span class="text-primary">Taylor</span>
-          </h1>
-          <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
-            <a href="mailto:name@email.com">name@email.com</a>
+          <h2 class="mb-0">Julio Alejandro Sarmiento Sabogal</h2>
+          <div class="subheading">Profesor · Investigador ·
+            <a href="mailto:sarmien@javeriana.edu.co">sarmien@javeriana.edu.co</a>
+          </div>
+          <div class="subheading">Departamento de Administración · Facultad de Ciencias Económicas y Administrativas
+
+          </div>
+          <div class="subheading">Pontificia Universidad Javeriana
           </div>
           <p class="mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
           <ul class="list-inline list-social-icons mb-0">
@@ -296,14 +299,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="jquery/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ URL::asset('jquery/jquery.min.js') }}"></script>
+    <script src="{{ URL::asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="jquery-easing/jquery.easing.min.js"></script>
+    <script src="{{ URL::asset('jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/resume.min.js"></script>
+    <script src="{{ URL::asset('js/resume.min.js') }}"></script>
 
   </body>
 
