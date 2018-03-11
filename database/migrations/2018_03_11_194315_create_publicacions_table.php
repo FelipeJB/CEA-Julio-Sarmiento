@@ -16,6 +16,7 @@ class CreatePublicacionsTable extends Migration
         Schema::create('publicacions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->string('descripcion',500)->nullable(true);
             $table->string('vinculo');
             $table->integer('seccion');
             $table->timestamps();

@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+function clean($string) {
+   $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+   $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+
+   return preg_replace('/-+/', '-', $string); // Replaces multiple hyphens with single one.
+} ?>
+
 <html lang="es">
 
   <head>
@@ -26,7 +34,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <span class="d-block d-lg-none">Start Bootstrap</span>
+        <span class="d-block d-lg-none">Julio Alejandro Sarmiento Sabogal</span>
         <span class="d-none d-lg-block">
           <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{ URL::asset('img/profile.jpg') }}" alt="">
         </span>
@@ -41,7 +49,7 @@
           </li>
           @foreach($secciones as $s)
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#{{$s->nombre}}">{{$s->nombre}}</a>
+            <a class="nav-link js-scroll-trigger" href="#{{clean($s->nombre)}}">{{$s->nombre}}</a>
           </li>
           @endforeach
         </ul>
@@ -63,47 +71,26 @@
                <p class="mb-5">{{$desc[0]->descripcion}}</p>
           @endif
 
-
         </div>
       </section>
 
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
+      @foreach($secciones as $s)
+
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="{{clean($s->nombre)}}">
         <div class="my-auto">
-          <h2 class="mb-5">Experience</h2>
-
-
-              <h3 class="mb-0">Senior Web Developer</h3>
-
-        </div>
-
-      </section>
-
-
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
-        <div class="my-auto">
-          <h2 class="mb-5">Skills</h2>
-
-          <div class="subheading mb-3">Programming Languages &amp; Tools</div>
-
-
-          <div class="subheading mb-3">Workflow</div>
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Mobile-First, Responsive Design</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Cross Browser Testing &amp; Debugging</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Cross Functional Teams</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Agile Development &amp; Scrum</li>
-          </ul>
+          <h2 class="mb-5">{{$s->nombre}}</h2>
+            <ul class="fa-ul mb-0">
+              @foreach($publicaciones[$s->nombre] as $p)
+                <li>
+                  @if($p->descripcion!=null) <h4><i class="fa-li fa fa-check"></i></h4><a href="{{$p->vinculo}}"><h4 class="mb-0">{{$p->nombre}}</h4></a><div class="mb-3">{{$p->descripcion}}</div>
+                  @else <h4><i class="fa-li fa fa-check"></i></h4><a href="{{$p->vinculo}}"><h4 class="mb-3">{{$p->nombre}}</h4></a> @endif
+                </li>
+              @endforeach
+            </ul>
         </div>
       </section>
 
+      @endforeach
 
     </div>
 

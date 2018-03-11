@@ -14,7 +14,13 @@
 Route::get('/', function () {
     $desc= \App\Descripcion::all();
     $secciones= \App\Seccion::all();
-    return view('resume', compact('desc', 'secciones'));
+    $publicaciones = array();
+
+    foreach ($secciones as $s) {
+      $publicaciones[$s->nombre]=\App\Publicacion::where("seccion", "=", $s->id)->get();
+    }
+
+    return view('resume', compact('desc', 'secciones', 'publicaciones'));
 });
 
 //Auth::routes();
