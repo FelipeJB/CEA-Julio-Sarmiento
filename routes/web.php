@@ -23,4 +23,12 @@ Route::get('/', function () {
     return view('resume', compact('desc', 'secciones', 'publicaciones'));
 });
 
+Route::get('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+Route::post('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@login']);
+Route::get('logout', 'Auth\LoginController@logout');
+
+Route::get('/home', function () {
+  return redirect('/');
+});
+
 //Auth::routes();

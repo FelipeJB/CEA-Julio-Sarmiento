@@ -24,6 +24,7 @@ function clean($string) {
     <!-- Custom fonts for this template -->
     <link href="{{ URL::asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i') }}" rel="stylesheet">
     <link href="{{ URL::asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/resume.min.css" rel="stylesheet">
@@ -31,6 +32,7 @@ function clean($string) {
   </head>
 
   <body id="page-top">
+
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -55,15 +57,19 @@ function clean($string) {
         </ul>
       </div>
     </nav>
-
+    @if (Auth::guest())
+      <div style="position:fixed; right:15px; top:20px;"><a id="ab" href="{{url('/login')}}" data-toggle="tooltip" title="Ingresar"><h4 class="icon-login"></h4><a></div>
+    @else
+      <div style="position:fixed; right:15px; top:20px;"><a id="ab" href="{{url('/logout')}}" data-toggle="tooltip" title="Salir"><h4 class="icon-logout"></h4><a></div>
+    @endif
     <div class="container-fluid p-0">
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto">
           <h2 class="mb-0">Julio Alejandro Sarmiento Sabogal</h2>
-
           <br><div class="subheading">Profesor · Investigador</div>
           <div class="subheading">Departamento de Administración · Facultad de Ciencias Económicas y Administrativas</div>
+          <div class="subheading"><i class="icon-phone"></i> (571) 320 83 20 Ext. 5155 · Fax (571) 285 72 89</div>
           <div class="subheading">Pontificia Universidad Javeriana</div>
           <div class="subheading mb-5"><a href="mailto:sarmien@javeriana.edu.co">sarmien@javeriana.edu.co</a></div>
 
@@ -93,7 +99,7 @@ function clean($string) {
             </ul>
 
             @if (count($publicaciones[$s->nombre])>8)
-               
+
                <ul class="pagination pagination-sm" id="myPager{{clean($s->nombre)}}"></ul>
 
                <script>$('#li{{clean($s->nombre)}}').pageMe({pagerSelector:'#myPager{{clean($s->nombre)}}',showPrevNext:true,hidePageNumbers:false,perPage:8});</script>
