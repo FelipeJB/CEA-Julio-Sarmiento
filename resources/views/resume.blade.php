@@ -54,6 +54,11 @@ function clean($string) {
             <a class="nav-link js-scroll-trigger" href="#{{clean($s->nombre)}}">{{$s->nombre}}</a>
           </li>
           @endforeach
+          @if (!Auth::guest())
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#Administrar">Administrar</a>
+          </li>
+          @endif
         </ul>
       </div>
     </nav>
@@ -109,6 +114,114 @@ function clean($string) {
       </section>
 
       @endforeach
+
+      @if (!Auth::guest())
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="Administrar">
+        <div class="my-auto">
+          <h2 class="mb-5">Administrar</h2>
+          <h4 class="mb-3">Administrar Secciones</h2>
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-success addS" onclick="agregarSeccion()" style="width:175px">Agregar Sección</button>
+                <button type="button" class="btn btn-danger delS" onclick="eliminarSeccion({{$secciones}})" style="width:175px">Eliminar Sección</button>
+            </div>
+
+
+            <div class="agregarS mb-3">
+                        <form style="display:none" class="col-sm-8 contentAgregarS" method="POST" action="/SeccionCrear" >
+                            <div class="form-group formAddS">
+
+                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                <label for="nombreS">Nombre de la sección</label>
+                                <input type="text" class="form-control" id="nombreU" name="nombreU" style="width:380px">
+                            </div>
+                            <button type="submit" class="btn btn-default">Agregar</button>
+                            <a onclick="cancelarS()" class="btn">Cancelar</a>
+                        </form>
+            </div>
+            <div class="eliminarS mb-3">
+                        <form   style="display:none" class="col-sm-12 contentEliminarS" method="POST" action="/SeccionEliminar">
+                            <div class="form-group formDelS">
+
+                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                <label for="sel1">Seleccione la sección que desea eliminar</label>
+                                <select class="form-control selS" id="sel1" name="eliminarS" style="width:380px">
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default">Eliminar</button>
+                            <a onclick="cancelarS()" class="btn">Cancelar</a>
+                        </form>
+            </div>
+            <br>
+          <h4 class="mb-3">Administrar Publicaciones</h2>
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-success addP" onclick="agregarPublicacion()" style="width:175px">Agregar Publicación</button>
+                <button type="button" class="btn btn-danger delP" onclick="eliminarPublicacion({{$secciones}}, {{json_encode($publicaciones)}})" style="width:175px">Eliminar Publicación</button>
+            </div>
+
+            <div class="agregarP mb-3">
+                        <form style="display:none" class="col-sm-8 contentAgregarP" method="POST" action="/SeccionCrear" >
+                            <div class="form-group formAddP">
+
+                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                <label for="nombreP">Nombre de la publicación</label>
+                                <input type="text" class="form-control mb-1" id="nombreP" name="nombreP" style="width:380px">
+                                <label for="descP">Descripción</label>
+                                <input type="text" class="form-control mb-1" id="descP" name="descP" style="width:380px">
+                                <label for="enP">Enlace</label>
+                                <input type="text" class="form-control mb-1" id="enP" name="enP" style="width:380px">
+                                <label>ó &nbsp</label><a href="#">Seleccionar archivo</a>
+                            </div>
+                            <button type="submit" class="btn btn-default">Agregar</button>
+                            <a onclick="cancelarP()" class="btn">Cancelar</a>
+                        </form>
+            </div>
+            <div class="eliminarP mb-3">
+                        <form   style="display:none" class="col-sm-12 contentEliminarP" method="POST" action="/SeccionEliminar">
+                            <div class="form-group formDelP">
+
+                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                <label for="sel2">Seleccione la sección de la publicación que desea eliminar</label>
+                                <select onchange="llenarP({{json_encode($publicaciones)}})" class="form-control selP mb-1" id="sel2" name="eliminarP" style="width:380px">
+                                </select>
+                                <label for="sel2s">Seleccione la publicación que desea eliminar</label>
+                                <select class="form-control selPS mb-1" id="sel2s" name="eliminarPS" style="width:380px">
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default">Eliminar</button>
+                            <a onclick="cancelarP()" class="btn">Cancelar</a>
+                        </form>
+            </div>
+
+          <br>
+          <h4 class="mb-3">Administrar Perfil</h2>
+
+            <div class="mb-3">
+                <button type="button" class="btn btn-info addC" onclick="cambiarClave()" style="width:175px">Cambiar Contraseña</button>
+            </div>
+
+            <div class="cambiarC">
+              <form class="col-sm-12 contentCambiarC" method="POST" action="/passwordUpdate" style="display:none">
+                  <div class="form-group formCambiarC">
+
+                      <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+
+                      <label for="ca">Contraseña actual:</label>
+                      <input type="password" class="form-control mb-1" id="ca" name="ca"  style="width:380px">
+                      <label for="cn">Contraseña nueva:</label>
+                      <input type="password" class="form-control mb-1" id="cn" name="cn"  style="width:380px">
+                      <label for="ccn">Confirmar contraseña nueva:</label>
+                      <input type="password" class="form-control mb-1" id="ccn" name="ccn"  style="width:380px">
+                  </div>
+                  <button type="submit" class="btn btn-default">Actualizar</button>
+                  <a onclick="cancelarC()" class="btn btn-default">Cancelar</a>
+              </form>
+          </div>
+
+        </div>
+      </section>
+      @endif
 
     </div>
 
