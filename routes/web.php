@@ -33,4 +33,10 @@ Route::get('/home', function () {
 
 Route::post('passwordUpdate', 'Controller@updatePassword');
 
+Route::post('DescripcionAgregar', 'DescripcionController@create');
+
+Route::post('DescripcionEliminar', 'DescripcionController@delete');
+
+Route::post('DescripcionEditar', 'DescripcionController@edit');
+
 //Auth::routes();

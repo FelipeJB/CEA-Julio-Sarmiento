@@ -78,6 +78,23 @@ function clean($string) {
           <div class="subheading">Pontificia Universidad Javeriana</div>
           <div class="subheading mb-5"><a href="mailto:sarmien@javeriana.edu.co">sarmien@javeriana.edu.co</a></div>
 
+          @if(Session::has('nuevaD'))
+
+              <div class="alert alert-dismissible alert-success" style="width:380px">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Hecho! </strong> {!! Session::get('nuevaD') !!}
+              </div>
+
+          @endif
+          @if(Session::has('errorD'))
+
+              <div class="alert alert-dismissible alert-danger" style="width:380px">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Error! </strong> {!! Session::get('errorD') !!}
+              </div>
+
+          @endif
+
           @if (count($desc)!=0)
                <p class="mb-5">{{$desc[0]->descripcion}}</p>
           @endif
@@ -95,7 +112,7 @@ function clean($string) {
                               <div class="form-group formEdD">
                                   <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                   <label for="descD">Descripción</label>
-                                <textarea type="textarea" class="form-control mb-1" id="descD" name="descD" rows="3"></textarea>
+                                <textarea type="textarea" class="form-control mb-1" id="descD" name="descD" rows="3">{{$desc[0]->descripcion}}</textarea>
                               </div>
                               <button type="submit" class="btn btn-default">Actualizar</button>
                               <a onclick="cancelarD()" class="btn">Cancelar</a>
