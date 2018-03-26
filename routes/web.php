@@ -31,4 +31,6 @@ Route::get('/home', function () {
   return redirect('/');
 });
 
+Route::post('passwordUpdate', 'Controller@updatePassword');
+
 //Auth::routes();

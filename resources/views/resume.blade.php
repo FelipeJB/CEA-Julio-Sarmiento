@@ -82,6 +82,56 @@ function clean($string) {
                <p class="mb-5">{{$desc[0]->descripcion}}</p>
           @endif
 
+          @if (!Auth::guest())
+
+            @if (count($desc)!=0 and $desc[0]->descripcion!="" and $desc[0]->descripcion!=" ")
+              <div class="mb-3">
+                  <button type="button" class="btn btn-info edD" onclick="editarDescripcion()" style="width:175px">Editar Descripción</button>
+                  <button type="button" class="btn btn-danger delD" onclick="eliminarDescripcion()" style="width:175px">Eliminar Descripción</button>
+              </div>
+
+              <div class="editarD mb-3">
+                          <form style="display:none" class="col-sm-8 contentEditarD" method="POST" action="/DescripcionEditar" >
+                              <div class="form-group formEdD">
+                                  <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                  <label for="descD">Descripción</label>
+                                <textarea type="textarea" class="form-control mb-1" id="descD" name="descD" rows="3"></textarea>
+                              </div>
+                              <button type="submit" class="btn btn-default">Actualizar</button>
+                              <a onclick="cancelarD()" class="btn">Cancelar</a>
+                          </form>
+              </div>
+              <div class="eliminarD mb-3">
+                          <form   style="display:none" class="col-sm-12 contentEliminarD" method="POST" action="/DescripcionEliminar">
+                              <div class="form-group formDelD">
+                                  <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                  <p>¿Seguro que desea eliminar la descripción actual?<p>
+                              </div>
+                              <button type="submit" class="btn btn-default">Eliminar</button>
+                              <a onclick="cancelarD()" class="btn">Cancelar</a>
+                          </form>
+              </div>
+
+            @else
+              <div class="mb-3">
+                  <button type="button" class="btn btn-success addP" onclick="agregarDescripcion()" style="width:175px">Agregar Descripción</button>
+              </div>
+
+              <div class="AgregarD mb-3">
+                          <form style="display:none" class="col-sm-8 contentAgregarD" method="POST" action="/DescripcionAgregar" >
+                              <div class="form-group formAddD">
+                                  <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                  <label for="descD">Descripción</label>
+                                  <textarea type="textarea" class="form-control mb-1" id="descD" name="descD" rows="3"></textarea>
+                              </div>
+                              <button type="submit" class="btn btn-default">Agregar</button>
+                              <a onclick="cancelarDA()" class="btn">Cancelar</a>
+                          </form>
+              </div>
+            @endif
+
+          @endif
+
         </div>
       </section>
 
@@ -196,6 +246,24 @@ function clean($string) {
 
           <br>
           <h4 class="mb-3">Administrar Perfil</h2>
+
+
+            @if(Session::has('nueva'))
+
+                <div class="alert alert-dismissible alert-success" style="width:380px">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Hecho! </strong> {!! Session::get('nueva') !!}
+                </div>
+
+            @endif
+            @if(Session::has('error'))
+
+                <div class="alert alert-dismissible alert-danger" style="width:380px">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Error! </strong> {!! Session::get('error') !!}
+                </div>
+
+            @endif
 
             <div class="mb-3">
                 <button type="button" class="btn btn-info addC" onclick="cambiarClave()" style="width:175px">Cambiar Contraseña</button>
