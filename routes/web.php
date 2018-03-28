@@ -39,4 +39,8 @@ Route::post('DescripcionEliminar', 'DescripcionController@delete');
 
 Route::post('DescripcionEditar', 'DescripcionController@edit');
 
+Route::get('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@validateRegisterShow']);
+
+Route::post('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@registerValidator']);
+
 //Auth::routes();

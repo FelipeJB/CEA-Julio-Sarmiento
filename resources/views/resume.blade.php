@@ -16,6 +16,8 @@ function clean($string) {
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <link rel="shortcut icon" type="image/x-icon" href="{{ URL::asset('favicon.png') }}" />
+
     <title>Julio Sarmiento</title>
 
     <!-- Bootstrap core CSS -->

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -69,4 +71,34 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    //validates that there is only one user registered
+    protected function validateRegisterShow (){
+      if(count(User::all())==0){
+        return $this->showRegistrationForm();
+      }else{
+        abort(404);
+      }
+    }
+
+    //validates that there is only one user registered and registers the user
+    public function registerValidator(Request $request)
+    {
+
+        if(count(User::all())==0){
+
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+
+        } else{
+          abort(404);
+        }
+    }
+
 }
