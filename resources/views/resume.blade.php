@@ -190,11 +190,27 @@ function clean($string) {
           <h2 class="mb-5">Administrar</h2>
           <h4 class="mb-3">Administrar Secciones</h2>
 
+            @if(Session::has('nuevaS'))
+
+                <div class="alert alert-dismissible alert-success" style="width:380px">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Hecho! </strong> {!! Session::get('nuevaS') !!}
+                </div>
+
+            @endif
+            @if(Session::has('errorS'))
+
+                <div class="alert alert-dismissible alert-danger" style="width:380px">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Error! </strong> {!! Session::get('errorS') !!}
+                </div>
+
+            @endif
+
             <div class="mb-3">
                 <button type="button" class="btn btn-success addS" onclick="agregarSeccion()" style="width:175px">Agregar Sección</button>
                 <button type="button" class="btn btn-danger delS" onclick="eliminarSeccion({{$secciones}})" style="width:175px">Eliminar Sección</button>
             </div>
-
 
             <div class="agregarS mb-3">
                         <form style="display:none" class="col-sm-8 contentAgregarS" method="POST" action="/SeccionCrear" >
@@ -202,7 +218,7 @@ function clean($string) {
 
                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                 <label for="nombreS">Nombre de la sección</label>
-                                <input type="text" class="form-control" id="nombreU" name="nombreU" style="width:380px">
+                                <input type="text" class="form-control" id="nombreS" name="nombreS" style="width:380px">
                             </div>
                             <button type="submit" class="btn btn-default">Agregar</button>
                             <a onclick="cancelarS()" class="btn">Cancelar</a>

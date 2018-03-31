@@ -43,4 +43,4 @@ Route::get('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@
 
 Route::post('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@registerValidator']);
 
-//Auth::routes();
+Route::post('SeccionCrear', 'SeccionController@create');
