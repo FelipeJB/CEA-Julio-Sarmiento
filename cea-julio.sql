@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
@@ -179,7 +179,7 @@ CREATE TABLE `seccions` (
 --
 
 INSERT INTO `seccions` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
-(1, '	\r\n\r\nPRESENTACIONES EN POWERPOINT', NULL, NULL),
+(1, 'PRESENTACIONES EN POWERPOINT', NULL, NULL),
 (2, 'JUEGOS DE AUTOCORRECCIÓN', NULL, NULL),
 (3, 'EJERCICIOS DE DEMOSTRACIÓN', NULL, NULL),
 (4, 'MODELOS INTERACTIVOS', NULL, NULL),

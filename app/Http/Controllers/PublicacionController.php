@@ -70,5 +70,38 @@ class PublicacionController extends Controller
       }
   }
 
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function delete()
+  {
+      if (Auth::check()) {
+          //validar que la sección tenga publicaciones
+          if(count(Publicacion::where('seccion','=',Input::get('eliminarP'))->get())==0){
+            return Redirect::to('/#Administrar')->with("errorP", "La secci&oacuten seleccionada no tiene publicaciones para eliminar");
+          }
+          $p=Publicacion::where('id','=',Input::get('eliminarPS'))->get()[0];
+
+          if(strpos($p->vinculo, 'archivos/') === false){
+            //borrado de la publicación
+            $p->delete();
+            return Redirect::to('/#Administrar')->with("nuevaP", "Se elimin&oacute la publicaci&oacuten");
+          }else{
+            //borrado de la publicación y del archivo
+            $nomArchivo=substr($p->vinculo,9);
+            if(Storage::disk('public')->exists($nomArchivo)){
+            Storage::disk('public')->delete($nomArchivo);
+            }
+            $p->delete();
+            return Redirect::to('/#Administrar')->with("nuevaP", "Se elimin&oacute la publicaci&oacuten");
+          }
+
+
+
+      }
+  }
+
 
 }

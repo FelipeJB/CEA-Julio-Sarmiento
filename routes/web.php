@@ -53,3 +53,5 @@ Route::post('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController
 Route::post('SeccionCrear', 'SeccionController@create');
 
 Route::post('PublicacionCrear', 'PublicacionController@create');
+
+Route::post('PublicacionEliminar', 'PublicacionController@delete');
