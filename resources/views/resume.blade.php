@@ -165,8 +165,8 @@ function clean($string) {
             <ul class="fa-ul mb-0" id="li{{clean($s->nombre)}}">
               @foreach($publicaciones[$s->nombre] as $p)
                 <li>
-                  @if($p->descripcion!=null) <h4><i class="fa-li fa fa-check"></i></h4><a href="{{$p->vinculo}}"><h4 class="mb-0">{{$p->nombre}}</h4></a><div class="mb-3">{{$p->descripcion}}</div>
-                  @else <h4><i class="fa-li fa fa-check"></i></h4><a href="{{$p->vinculo}}"><h4 class="mb-3">{{$p->nombre}}</h4></a> @endif
+                  @if($p->descripcion!=null) <h4><i class="fa-li fa fa-check"></i></h4><a href="{{$p->vinculo}}" target="_blank"><h4 class="mb-0">{{$p->nombre}}</h4></a><div class="mb-3">{{$p->descripcion}}</div>
+                  @else <h4><i class="fa-li fa fa-check"></i></h4><a href="{{$p->vinculo}}" target="_blank"><h4 class="mb-3">{{$p->nombre}}</h4></a> @endif
                 </li>
               @endforeach
 
@@ -241,13 +241,30 @@ function clean($string) {
             <br>
           <h4 class="mb-3">Administrar Publicaciones</h2>
 
+            @if(Session::has('nuevaP'))
+
+                <div class="alert alert-dismissible alert-success" style="width:380px">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Hecho! </strong> {!! Session::get('nuevaP') !!}
+                </div>
+
+            @endif
+            @if(Session::has('errorP'))
+
+                <div class="alert alert-dismissible alert-danger" style="width:380px">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Error! </strong> {!! Session::get('errorP') !!}
+                </div>
+
+            @endif
+
             <div class="mb-3">
                 <button type="button" class="btn btn-success addP" onclick="agregarPublicacion({{$secciones}})" style="width:175px">Agregar Publicación</button>
                 <button type="button" class="btn btn-danger delP" onclick="eliminarPublicacion({{$secciones}}, {{json_encode($publicaciones)}})" style="width:175px">Eliminar Publicación</button>
             </div>
 
             <div class="agregarP mb-3">
-                        <form style="display:none" class="col-sm-8 contentAgregarP" method="POST" action="/SeccionCrear" >
+                        <form style="display:none" class="col-sm-8 contentAgregarP" method="POST" action="/PublicacionCrear" enctype="multipart/form-data" >
                             <div class="form-group formAddP">
 
                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -259,14 +276,15 @@ function clean($string) {
                                 <input type="text" class="form-control mb-1" id="descP" name="descP" style="width:380px">
                                 <label for="enP">Enlace</label>
                                 <input type="text" class="form-control mb-1" id="enP" name="enP" style="width:380px">
-                                <label>ó &nbsp</label><a href="#">Seleccionar archivo</a>
+                                <label>ó &nbsp</label>
+                                <label style" display: inline-block"><input type="file" name="fileToUpload" id="fileToUpload" style="display:none"><b style"cursor:pointer">Seleccionar archivo</b><span style="padding-left:2em" id="file-selected" ></span></label>
                             </div>
                             <button type="submit" class="btn btn-default">Agregar</button>
                             <a onclick="cancelarP()" class="btn">Cancelar</a>
                         </form>
             </div>
             <div class="eliminarP mb-3">
-                        <form   style="display:none" class="col-sm-12 contentEliminarP" method="POST" action="/SeccionEliminar">
+                        <form   style="display:none" class="col-sm-12 contentEliminarP" method="POST" action="/PublicacionEliminar">
                             <div class="form-group formDelP">
 
                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">

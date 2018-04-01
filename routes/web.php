@@ -31,6 +31,13 @@ Route::get('/home', function () {
   return redirect('/');
 });
 
+Route::get('archivos/{id}', function ($id) {
+  if(Storage::disk('public')->exists($id)){
+    return Storage::download("public/".$id);
+  }
+  abort(404);
+});
+
 Route::post('passwordUpdate', 'Controller@updatePassword');
 
 Route::post('DescripcionAgregar', 'DescripcionController@create');
@@ -44,3 +51,5 @@ Route::get('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@
 Route::post('/register', ['as' => 'register', 'uses' => 'Auth\RegisterController@registerValidator']);
 
 Route::post('SeccionCrear', 'SeccionController@create');
+
+Route::post('PublicacionCrear', 'PublicacionController@create');
