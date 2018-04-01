@@ -20,6 +20,7 @@ class SeccionController extends Controller
    */
   public function create()
   {
+    try {
       if (Auth::check()){
           if (Input::get('nombreS')!=null && Input::get('nombreS')!="" && Input::get('nombreS')!=" "){
                   $s = new Seccion();
@@ -29,6 +30,9 @@ class SeccionController extends Controller
           }
           return Redirect::to('/#Administrar')->with("errorS", "Por favor ingrese el nombre de la secci&oacuten");
       }
+    } catch (Exception $e) {
+      return Redirect::to('/#Administrar')->with("errorS", "Error agregando la secci&oacuten");
+    }
   }
 
   /**
@@ -38,6 +42,7 @@ class SeccionController extends Controller
    */
   public function delete()
   {
+    try {
       if (Auth::check()) {
         //verificar si hay Secciones
         if(count(Seccion::all())==0){
@@ -65,6 +70,9 @@ class SeccionController extends Controller
         $s->delete();
         return Redirect::to('/#Administrar')->with("nuevaS", "Se elimin&oacute la secci&oacuten");
       }
+    } catch (ErrorException $e) {
+      return Redirect::to('/#Administrar')->with("errorS", "Error eliminando la secci&oacuten");
+    }
   }
 
 

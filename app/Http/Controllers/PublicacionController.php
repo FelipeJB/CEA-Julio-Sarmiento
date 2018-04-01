@@ -20,6 +20,7 @@ class PublicacionController extends Controller
    */
   public function create()
   {
+    try {
       if (Auth::check()){
         if (Input::file('fileToUpload')!=null and (Input::get('enP')!=null and Input::get('enP')!="" and Input::get('enP')!=" ")){
           return Redirect::to('/#Administrar')->with("errorP", "Se debe ingresar un enlace o archivo, pero no ambos campos");
@@ -68,6 +69,10 @@ class PublicacionController extends Controller
         }
         return Redirect::to('/#Administrar')->with("errorP", "No hay secciones en donde agregar la publicaci&oacuten");
       }
+
+    } catch (Exception $e) {
+      return Redirect::to('/#Administrar')->with("errorP", "Error agregando la publicaci&oacuten");
+    }
   }
 
   /**
@@ -77,6 +82,7 @@ class PublicacionController extends Controller
    */
   public function delete()
   {
+    try {
       if (Auth::check()) {
           //validar que la sección tenga publicaciones
           if(count(Publicacion::where('seccion','=',Input::get('eliminarP'))->get())==0){
@@ -99,6 +105,9 @@ class PublicacionController extends Controller
           }
 
       }
+    } catch (ErrorException $e) {
+      return Redirect::to('/#Administrar')->with("errorP", "Error eliminando la publicaci&oacuten");
+    }
   }
 
 

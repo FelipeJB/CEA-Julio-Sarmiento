@@ -220,7 +220,7 @@ function clean($string) {
                                 <label for="nombreS">Nombre de la sección</label>
                                 <input type="text" class="form-control" id="nombreS" name="nombreS" style="width:380px">
                             </div>
-                            <button type="submit" class="btn btn-default">Agregar</button>
+                            <button type="submit" class="btn btn-default" onclick="this.disabled=true;this.form.submit()">Agregar</button>
                             <a onclick="cancelarS()" class="btn">Cancelar</a>
                         </form>
             </div>
@@ -234,7 +234,7 @@ function clean($string) {
                                 </select>
                             </div>
                             <p>Eliminar una sección borrará todas las publicaciones que esta contenga</p>
-                            <button type="submit" class="btn btn-default">Eliminar</button>
+                            <button type="submit" class="btn btn-default" onclick="this.disabled=true;this.form.submit()">Eliminar</button>
                             <a onclick="cancelarS()" class="btn">Cancelar</a>
                         </form>
             </div>
@@ -279,7 +279,7 @@ function clean($string) {
                                 <label>ó &nbsp</label>
                                 <label style" display: inline-block"><input type="file" name="fileToUpload" id="fileToUpload" style="display:none"><b style"cursor:pointer">Seleccionar archivo</b><span style="padding-left:2em" id="file-selected" ></span></label>
                             </div>
-                            <button type="submit" class="btn btn-default">Agregar</button>
+                            <button type="submit" class="btn btn-default" onclick="this.disabled=true;this.form.submit()">Agregar</button>
                             <a onclick="cancelarP()" class="btn">Cancelar</a>
                         </form>
             </div>
@@ -295,7 +295,7 @@ function clean($string) {
                                 <select class="form-control selPS mb-1" id="sel2s" name="eliminarPS" style="width:380px">
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-default">Eliminar</button>
+                            <button type="submit" class="btn btn-default" onclick="this.disabled=true;this.form.submit()">Eliminar</button>
                             <a onclick="cancelarP()" class="btn">Cancelar</a>
                         </form>
             </div>
