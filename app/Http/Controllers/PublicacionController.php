@@ -98,8 +98,6 @@ class PublicacionController extends Controller
             return Redirect::to('/#Administrar')->with("nuevaP", "Se elimin&oacute la publicaci&oacuten");
           }
 
-
-
       }
   }
 
