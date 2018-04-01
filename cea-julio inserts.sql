@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2018 a las 02:21:00
+-- Tiempo de generación: 01-04-2018 a las 20:58:53
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -22,37 +22,12 @@ SET time_zone = "+00:00";
 -- Base de datos: `cea-julio`
 --
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `descripcions`
---
-
-CREATE TABLE `descripcions` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `descripcion` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Volcado de datos para la tabla `descripcions`
 --
 
 INSERT INTO `descripcions` (`id`, `descripcion`, `created_at`, `updated_at`) VALUES
 (1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `migrations`
@@ -64,34 +39,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2018_03_11_180453_create_descripcions_table', 1),
 (12, '2018_03_11_194315_create_publicacions_table', 1),
 (13, '2018_03_11_194808_create_seccions_table', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `publicacions`
---
-
-CREATE TABLE `publicacions` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vinculo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seccion` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `publicacions`
@@ -161,19 +108,6 @@ INSERT INTO `publicacions` (`id`, `nombre`, `descripcion`, `vinculo`, `seccion`,
 (62, 'Tablas dinámicas', NULL, 'http://www.javeriana.edu.co/decisiones/Julio/nomina.xls', 5, NULL, NULL),
 (63, 'Tablas dinámicas 2', NULL, 'http://www.javeriana.edu.co/decisiones/Julio/EF.xls', 5, NULL, NULL);
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `seccions`
---
-
-CREATE TABLE `seccions` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Volcado de datos para la tabla `seccions`
 --
@@ -187,104 +121,6 @@ INSERT INTO `seccions` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
 (6, 'SOLUCIÓN DE TALLERES', NULL, NULL),
 (7, 'INFORMACIÓN ÚTIL', NULL, NULL),
 (8, 'PROGRAMAS ÚTILES', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `users`
---
-
-CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Julio Sarmiento', 'sarmien@javeriana.edu.co', '$2y$10$tLdMfiJPQGpJd2fUFYvJXuNg21IaWwJw3XhME00Ddzhn/KvhEdUWO', 'KBnz3U9plKu47bDaPSjC6GvVtwqAUwz50iKoL5PMoxIqv2b95BjuJwicMEaE', '2018-03-13 07:14:21', '2018-03-13 07:14:21');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `descripcions`
---
-ALTER TABLE `descripcions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indices de la tabla `publicacions`
---
-ALTER TABLE `publicacions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `seccions`
---
-ALTER TABLE `seccions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `descripcions`
---
-ALTER TABLE `descripcions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT de la tabla `publicacions`
---
-ALTER TABLE `publicacions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT de la tabla `seccions`
---
-ALTER TABLE `seccions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
