@@ -233,6 +233,7 @@ function clean($string) {
                                 <select class="form-control selS" id="sel1" name="eliminarS" style="width:380px">
                                 </select>
                             </div>
+                            <p>Eliminar una sección borrará todas las publicaciones que esta contenga</p>
                             <button type="submit" class="btn btn-default">Eliminar</button>
                             <a onclick="cancelarS()" class="btn">Cancelar</a>
                         </form>
@@ -241,7 +242,7 @@ function clean($string) {
           <h4 class="mb-3">Administrar Publicaciones</h2>
 
             <div class="mb-3">
-                <button type="button" class="btn btn-success addP" onclick="agregarPublicacion()" style="width:175px">Agregar Publicación</button>
+                <button type="button" class="btn btn-success addP" onclick="agregarPublicacion({{$secciones}})" style="width:175px">Agregar Publicación</button>
                 <button type="button" class="btn btn-danger delP" onclick="eliminarPublicacion({{$secciones}}, {{json_encode($publicaciones)}})" style="width:175px">Eliminar Publicación</button>
             </div>
 
@@ -250,6 +251,8 @@ function clean($string) {
                             <div class="form-group formAddP">
 
                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                <label for="selAP">Seleccione la sección en la cual ubicar la publicación</label>
+                                <select class="form-control selAP mb-1" id="selAP" name="selAP" style="width:380px"></select>
                                 <label for="nombreP">Nombre de la publicación</label>
                                 <input type="text" class="form-control mb-1" id="nombreP" name="nombreP" style="width:380px">
                                 <label for="descP">Descripción</label>
