@@ -56,6 +56,10 @@ class Handler extends ExceptionHandler
           return response()->view('missing', [], 404);
       }
 
+      if ( ! config('app.debug') && ! $this->isHttpException($exception)) {
+            return view('error');
+      }
+
       return parent::render($request, $exception);
     }
 

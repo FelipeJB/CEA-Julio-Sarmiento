@@ -27,7 +27,7 @@
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column">
         <div class="my-auto">
-          <h2 class="mb-0">Página no encontrada</h2>
+          <h2 class="mb-0">Se ha producido un error</h2>
           <br>&nbsp<a class="navbar-brand js-scroll-trigger" href="/">Ir al inicio</a>
         </div>
 
