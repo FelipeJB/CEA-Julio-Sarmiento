@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 01-04-2018 a las 20:58:31
--- Versión del servidor: 10.1.30-MariaDB
--- Versión de PHP: 7.2.1
+﻿
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,8 +12,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `cea-julio`
+-- Base de datos: `juliosarmiento`
 --
+CREATE DATABASE IF NOT EXISTS `juliosarmiento` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `juliosarmiento`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datos`
+--
+
+CREATE TABLE `datos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cargo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `departamento` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facultad` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fax` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `compania` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `correo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `datos`
+--
+
+INSERT INTO `datos` (`id`, `cargo`, `departamento`, `facultad`, `telefono`, `fax`, `compania`, `correo`, `created_at`, `updated_at`) VALUES
+(1, 'PROFESOR ASOCIADO', 'DEPARTAMENTO DE ADMINISTRACIÓN', 'FACULTAD DE CIENCIAS ECONÓMICAS Y ADMINISTRATIVAS', '(571) 320 83 20 EXT. 5155', '(571) 285 72 89', 'PONTIFICIA UNIVERSIDAD JAVERIANA', 'SARMIEN@JAVERIANA.EDU.CO', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -63,7 +84,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2014_10_12_100000_create_password_resets_table', 1),
 (11, '2018_03_11_180453_create_descripcions_table', 1),
 (12, '2018_03_11_194315_create_publicacions_table', 1),
-(13, '2018_03_11_194808_create_seccions_table', 1);
+(13, '2018_03_11_194808_create_seccions_table', 1),
+(15, '2018_05_06_193322_create_datos_table', 2);
 
 -- --------------------------------------------------------
 
@@ -209,6 +231,12 @@ CREATE TABLE `users` (
 --
 
 --
+-- Indices de la tabla `datos`
+--
+ALTER TABLE `datos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `descripcions`
 --
 ALTER TABLE `descripcions`
@@ -250,6 +278,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `datos`
+--
+ALTER TABLE `datos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `descripcions`
 --
 ALTER TABLE `descripcions`
@@ -259,7 +293,7 @@ ALTER TABLE `descripcions`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `publicacions`

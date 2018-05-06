@@ -73,12 +73,45 @@ function clean($string) {
 
       <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
         <div class="my-auto">
-          <h2 class="mb-0">Julio Alejandro Sarmiento Sabogal</h2>
-          <br><div class="subheading">Profesor · Investigador</div>
-          <div class="subheading">Departamento de Administración · Facultad de Ciencias Económicas y Administrativas</div>
-          <div class="subheading"><i class="icon-phone"></i> (571) 320 83 20 Ext. 5155 · Fax (571) 285 72 89</div>
-          <div class="subheading">Pontificia Universidad Javeriana</div>
-          <div class="subheading mb-5"><a href="mailto:sarmien@javeriana.edu.co">sarmien@javeriana.edu.co</a></div>
+          <h2 class="mb-0">Julio Alejandro Sarmiento Sabogal</h2><br>
+
+          @if ($datos->cargo!="" and $datos->cargo!=" " and $datos->cargo!=null)
+          <div class="subheading">{{$datos->cargo}}</div>
+          @endif
+
+          @if ($datos->departamento!="" and $datos->departamento!=" " and $datos->departamento!=null)
+            @if ($datos->facultad!="" and $datos->facultad!=" " and $datos->facultad!=null)
+              <div class="subheading">{{$datos->departamento}} · {{$datos->facultad}}</div>
+            @else
+              <div class="subheading">{{$datos->departamento}}</div>
+            @endif
+          @else
+            @if ($datos->facultad!="" and $datos->facultad!=" " and $datos->facultad!=null)
+              <div class="subheading">{{$datos->facultad}}</div>
+            @endif
+          @endif
+
+          @if ($datos->telefono!="" and $datos->telefono!=" " and $datos->telefono!=null)
+            @if ($datos->fax!="" and $datos->fax!=" " and $datos->fax!=null)
+              <div class="subheading"><i class="icon-phone"></i> {{$datos->telefono}} · Fax {{$datos->fax}}</div>
+            @else
+              <div class="subheading"><i class="icon-phone"></i> {{$datos->telefono}}</div>
+            @endif
+          @else
+            @if ($datos->fax!="" and $datos->fax!=" " and $datos->fax!=null)
+              <div class="subheading">Fax {{$datos->fax}}</div>
+            @endif
+          @endif
+
+          @if ($datos->compania!="" and $datos->compania!=" " and $datos->compania!=null)
+          <div class="subheading">{{$datos->compania}}</div>
+          @endif
+
+          @if ($datos->correo!="" and $datos->correo!=" " and $datos->correo!=null)
+          <div class="subheading"><a href="mailto:{{$datos->correo}}">{{$datos->correo}}</a></div>
+          @endif
+
+          <div class="mb-5"></div>
 
           @if(Session::has('nuevaD'))
 
@@ -98,7 +131,7 @@ function clean($string) {
           @endif
 
           @if (count($desc)!=0)
-               <p class="mb-5">{{$desc[0]->descripcion}}</p>
+               <p class="mb-3">{{$desc[0]->descripcion}}</p>
           @endif
 
           @if (!Auth::guest())

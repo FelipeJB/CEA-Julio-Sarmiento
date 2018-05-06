@@ -13,6 +13,7 @@
 
 Route::get('/', function () {
     $desc= \App\Descripcion::all();
+    $datos= \App\Datos::all()[0];
     $secciones= \App\Seccion::all();
     $publicaciones = array();
 
@@ -20,7 +21,7 @@ Route::get('/', function () {
       $publicaciones[$s->nombre]=\App\Publicacion::where("seccion", "=", $s->id)->get();
     }
 
-    return view('resume', compact('desc', 'secciones', 'publicaciones'));
+    return view('resume', compact('desc', 'secciones', 'publicaciones', 'datos'));
 });
 
 Route::get('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
