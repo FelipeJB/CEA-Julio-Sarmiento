@@ -58,3 +58,5 @@ Route::post('PublicacionCrear', 'PublicacionController@create');
 Route::post('PublicacionEliminar', 'PublicacionController@delete');
 
 Route::post('SeccionEliminar', 'SeccionController@delete');
+
+Route::post('DatosEditar', 'DatosController@edit');

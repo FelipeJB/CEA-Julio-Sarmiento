@@ -12,7 +12,7 @@ function clean($string) {
   <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -75,6 +75,23 @@ function clean($string) {
         <div class="my-auto">
           <h2 class="mb-0">Julio Alejandro Sarmiento Sabogal</h2><br>
 
+          @if(Session::has('nuevaDatos'))
+
+              <div class="alert alert-dismissible alert-success" style="width:380px">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Hecho! </strong> {!! Session::get('nuevaDatos') !!}
+              </div>
+
+          @endif
+          @if(Session::has('errorDatos'))
+
+              <div class="alert alert-dismissible alert-danger" style="width:380px">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Error! </strong> {!! Session::get('errorDatos') !!}
+              </div>
+
+          @endif
+
           @if ($datos->cargo!="" and $datos->cargo!=" " and $datos->cargo!=null)
           <div class="subheading">{{$datos->cargo}}</div>
           @endif
@@ -111,7 +128,40 @@ function clean($string) {
           <div class="subheading"><a href="mailto:{{$datos->correo}}">{{$datos->correo}}</a></div>
           @endif
 
-          <div class="mb-5"></div>
+          <div class="mb-3"></div>
+
+
+          @if (!Auth::guest())
+
+              <div class="mb-3">
+                  <button type="button" class="btn btn-info editarDatos" onclick="editarDatos({{$datos}})" style="width:175px">Editar Información</button>
+              </div>
+
+              <div class="EditarDatos mb-3">
+                          <form style="display:none" class="col-sm-8 contentEditarDatos" method="POST" action="/DatosEditar" >
+                              <div class="form-group formEditDatos">
+                                  <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                  <label for="selCampo">Seleccione el campo que desea editar</label>
+                                  <select onchange="llenarDatos({{$datos}})"class="form-control selCampo mb-1" id="selCampo" name="selCampo" style="width:380px">
+                                    <option value="Cargo">Cargo</option>
+                                    <option value="Departamento">Departamento</option>
+                                    <option value="Facultad">Facultad</option>
+                                    <option value="Telefono">Teléfono</option>
+                                    <option value="Fax">Fax</option>
+                                    <option value="Compania">Compañía</option>
+                                    <option value="Correo">Correo</option>
+                                  </select>
+                                  <label for="nombreValor">Ingrese el nuevo valor</label>
+                                  <input type="text" class="form-control mb-1" id="nombreValor" name="nombreValor" style="width:380px">
+                              </div>
+                              <p>Dejar el nuevo valor vacío no mostrará el campo en la página inicial</p>
+                              <button type="submit" class="btn btn-default">Guardar</button>
+                              <a onclick="cancelarDatosE()" class="btn">Cancelar</a>
+                          </form>
+              </div>
+
+          @endif
+
 
           @if(Session::has('nuevaD'))
 
