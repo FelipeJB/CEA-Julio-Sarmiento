@@ -14,7 +14,7 @@
 Route::get('/', function () {
     $desc= \App\Descripcion::all();
     $datos= \App\Datos::all()[0];
-    $secciones= \App\Seccion::all();
+    $secciones= DB::table('seccions')->join('ordens', 'seccions.id', '=', 'ordens.seccion')->orderBy('ordens.id','ASC')->get();
     $publicaciones = array();
 
     foreach ($secciones as $s) {
@@ -58,5 +58,7 @@ Route::post('PublicacionCrear', 'PublicacionController@create');
 Route::post('PublicacionEliminar', 'PublicacionController@delete');
 
 Route::post('SeccionEliminar', 'SeccionController@delete');
+
+Route::post('SeccionOrdenar', 'SeccionController@order');
 
 Route::post('DatosEditar', 'DatosController@edit');

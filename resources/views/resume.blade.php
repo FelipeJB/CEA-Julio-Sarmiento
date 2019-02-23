@@ -40,7 +40,7 @@ function clean($string) {
       <a class="navbar-brand js-scroll-trigger" href="#page-top">
         <span class="d-block d-lg-none">Julio Alejandro Sarmiento Sabogal</span>
         <span class="d-none d-lg-block">
-          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{ URL::asset('img/profile.jpg') }}" alt="">
+          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{{ URL::asset('img/profile.JPG') }}" alt="">
         </span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -293,6 +293,7 @@ function clean($string) {
             <div class="mb-3">
                 <button type="button" class="btn btn-success addS" onclick="agregarSeccion()" style="width:175px">Agregar Sección</button>
                 <button type="button" class="btn btn-danger delS" onclick="eliminarSeccion({{$secciones}})" style="width:175px">Eliminar Sección</button>
+                <button type="button" class="btn btn-info ordS" onclick="ordenarSecciones({{$secciones}})" style="width:175px">Cambiar Orden</button>
             </div>
 
             <div class="agregarS mb-3">
@@ -318,6 +319,23 @@ function clean($string) {
                             </div>
                             <p>Eliminar una sección borrará todas las publicaciones que esta contenga</p>
                             <button type="submit" class="btn btn-default" onclick="this.disabled=true;this.form.submit()">Eliminar</button>
+                            <a onclick="cancelarS()" class="btn">Cancelar</a>
+                        </form>
+            </div>
+            <div class="ordenarS mb-3">
+                        <form   style="display:none" class="col-sm-12 contentOrdenarS" method="POST" action="/SeccionOrdenar">
+                            <div class="form-group formOrdS">
+
+                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                <label for="selOrd1">Seleccione la sección que desea mover</label>
+                                <select class="form-control sel1S" id="selOrd1" name="Ord1S" style="width:380px">
+                                </select>
+                                <label for="selOrd2">Seleccione la sección por la cual intercambiar</label>
+                                <select class="form-control sel2S" id="selOrd2" name="Ord2S" style="width:380px">
+                                </select>
+                            </div>
+                            <p>Se intercambiará la posición de las secciones seleccionadas</p>
+                            <button type="submit" class="btn btn-default" onclick="this.disabled=true;this.form.submit()">Confirmar</button>
                             <a onclick="cancelarS()" class="btn">Cancelar</a>
                         </form>
             </div>
