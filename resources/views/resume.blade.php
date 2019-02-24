@@ -128,6 +128,10 @@ function clean($string) {
           <div class="subheading"><a href="mailto:{{$datos->correo}}">{{$datos->correo}}</a></div>
           @endif
 
+          @foreach ($info as $i)
+            <div class="subheading">{{$i->descripcion}}</div>
+          @endforeach
+
           <div class="mb-3"></div>
 
 
@@ -135,6 +139,8 @@ function clean($string) {
 
               <div class="mb-3">
                   <button type="button" class="btn btn-info editarDatos" onclick="editarDatos({{$datos}})" style="width:175px">Editar Información</button>
+                  <button type="button" class="btn btn-success agregarDatos" onclick="agregarDatos()" style="width:175px">Agregar Dato</button>
+                  <button type="button" class="btn btn-danger eliminarDatos" onclick="eliminarDatos({{$info}})" style="width:175px">Eliminar Dato</button>
               </div>
 
               <div class="EditarDatos mb-3">
@@ -159,6 +165,29 @@ function clean($string) {
                               <a onclick="cancelarDatosE()" class="btn">Cancelar</a>
                           </form>
               </div>
+              <div class="AgregarDatos mb-3">
+                          <form style="display:none" class="col-sm-8 contentAgregarDatos" method="POST" action="/DatosAgregar" >
+                              <div class="form-group formAddDatos">
+                                  <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                  <label for="nombreValor">Ingrese el nuevo dato</label>
+                                  <input type="text" class="form-control mb-1" id="nombreDato" name="nombreDato" style="width:380px">
+                              </div>
+                              <button type="submit" class="btn btn-default">Guardar</button>
+                              <a onclick="cancelarDatosE()" class="btn">Cancelar</a>
+                          </form>
+              </div>
+              <div class="EliminarDatos mb-3">
+                          <form style="display:none" class="col-sm-8 contentEliminarDatos" method="POST" action="/DatosEliminar" >
+                              <div class="form-group formDeleteDatos">
+                                  <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                  <label for="selD">Seleccione el dato que desea eliminar</label>
+                                  <select class="form-control selD" id="selD" name="eliminarD" style="width:380px"></select>
+                              </div>
+                              <button type="submit" class="btn btn-default">Eliminar</button>
+                              <a onclick="cancelarDatosE()" class="btn">Cancelar</a>
+                          </form>
+              </div>
+
 
           @endif
 

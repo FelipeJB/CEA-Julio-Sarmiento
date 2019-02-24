@@ -14,6 +14,7 @@
 Route::get('/', function () {
     $desc= \App\Descripcion::all();
     $datos= \App\Datos::all()[0];
+    $info= \App\Info::all();
     $secciones= DB::table('seccions')->join('ordens', 'seccions.id', '=', 'ordens.seccion')->orderBy('ordens.id','ASC')->get();
     $publicaciones = array();
 
@@ -21,7 +22,7 @@ Route::get('/', function () {
       $publicaciones[$s->nombre]=\App\Publicacion::where("seccion", "=", $s->id)->get();
     }
 
-    return view('resume', compact('desc', 'secciones', 'publicaciones', 'datos'));
+    return view('resume', compact('desc', 'secciones', 'publicaciones', 'datos', 'info'));
 });
 
 Route::get('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
@@ -60,5 +61,9 @@ Route::post('PublicacionEliminar', 'PublicacionController@delete');
 Route::post('SeccionEliminar', 'SeccionController@delete');
 
 Route::post('SeccionOrdenar', 'SeccionController@order');
+
+Route::post('DatosAgregar', 'DatosController@create');
+
+Route::post('DatosEliminar', 'DatosController@delete');
 
 Route::post('DatosEditar', 'DatosController@edit');

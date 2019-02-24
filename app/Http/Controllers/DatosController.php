@@ -5,11 +5,30 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use App\Datos;
+use App\Info;
 use Auth;
 use Redirect;
 
 class DatosController extends Controller
 {
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+      if (Auth::check()){
+          if (Input::get('nombreDato')!=null && Input::get('nombreDato')!="" && Input::get('nombreDato')!=" "){
+                  $d = new Info();
+                  $d->descripcion = Input::get('nombreDato');
+                  $d->save();
+                  return Redirect::to('/')->with("nuevaDatos", "Se agreg&oacute el dato");
+          }
+          return Redirect::to('/')->with("errorDatos", "Por favor ingrese el dato");
+      }
+  }
 
   /**
    * Show the form for editing a resource.
@@ -59,6 +78,25 @@ class DatosController extends Controller
                   }
 
                   return Redirect::to('/')->with("errorDatos", "Error en la actualización de datos");
+      }
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function delete()
+  {
+      if (Auth::check()) {
+        //verificar si hay Datos Adicionales
+        if(count(Info::all())==0){
+          return Redirect::to('/')->with("errorDatos", "No hay datos para eliminar");
+        }
+        //eliminar el dato seleccionado
+        $dato=Info::where('id','=',Input::get('eliminarD'))->get()[0];
+        $dato->delete();
+        return Redirect::to('/')->with("nuevaDatos", "Se elimin&oacute el dato");
       }
   }
 
