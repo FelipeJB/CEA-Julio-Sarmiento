@@ -145,3 +145,30 @@ body{font-family:'Open Sans',serif;padding-top:54px;color:#868e96}@media (min-wi
   background-color: #18bc9c;
   cursor: not-allowed;
 }
+
+@media screen and (max-width: 1280px) and (max-height: 720px) and (min-width: 992px){
+   #sideNav {
+     width: 19%;
+       font-size: 11px;
+   }
+
+   h2 {
+     font-size: 40px;
+   }
+
+   h4 {
+     font-size: 14px;
+   }
+
+   .img-profile{
+     width: 80%
+   }
+
+   .subtitulo {
+     font-size: 12px;
+   }
+
+   .subheading{
+     font-size: 18px;
+   }
+}

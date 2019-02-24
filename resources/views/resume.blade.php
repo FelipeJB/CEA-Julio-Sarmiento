@@ -277,18 +277,18 @@ function clean($string) {
             <ul class="fa-ul mb-0" id="li{{clean($s->nombre)}}">
               @foreach($publicaciones[$s->nombre] as $p)
                 <li>
-                  @if($p->descripcion!=null) <h4><i class="fa-li fa fa-check"></i></h4><a href="{{$p->vinculo}}" target="_blank"><h4 class="mb-0">{{$p->nombre}}</h4></a><div class="mb-3">{{$p->descripcion}}</div>
+                  @if($p->descripcion!=null) <h4><i class="fa-li fa fa-check"></i></h4><a href="{{$p->vinculo}}" target="_blank"><h4 class="mb-0">{{$p->nombre}}</h4></a><div class="mb-3 subtitulo">{{$p->descripcion}}</div>
                   @else <h4><i class="fa-li fa fa-check"></i></h4><a href="{{$p->vinculo}}" target="_blank"><h4 class="mb-3">{{$p->nombre}}</h4></a> @endif
                 </li>
               @endforeach
 
             </ul>
 
-            @if (count($publicaciones[$s->nombre])>8)
+            @if (count($publicaciones[$s->nombre])>6)
 
                <ul class="pagination pagination-sm" id="myPager{{clean($s->nombre)}}"></ul>
 
-               <script>$('#li{{clean($s->nombre)}}').pageMe({pagerSelector:'#myPager{{clean($s->nombre)}}',showPrevNext:true,hidePageNumbers:false,perPage:8});</script>
+               <script>$('#li{{clean($s->nombre)}}').pageMe({pagerSelector:'#myPager{{clean($s->nombre)}}',showPrevNext:true,hidePageNumbers:false,perPage:6});</script>
             @endif
 
         </div>
